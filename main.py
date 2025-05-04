@@ -21,9 +21,11 @@ def main():
 
     if login_result.status_code != 200:
         print("登录失败")
+        print(login_result.text)
         return
     else:
         print("登录成功")
+        print()
 
     # 使用相同的session进行其他操作
     session = get_session()
@@ -31,6 +33,13 @@ def main():
     challenge = Challenge(session)
     challenge_info = challenge.get_challenge_info()
     print(f"练武题列表: {challenge_info}")
+    print()
+
+    # 获取单个练武题信息
+    challenge_id = input("请输入练武题ID: ")
+    challenge_info = challenge.get_one_challenge_info(challenge_id)
+    print(f"练武题信息: {challenge_info}")
+    print()
 
 
 if __name__ == "__main__":

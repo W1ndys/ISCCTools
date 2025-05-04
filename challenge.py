@@ -37,3 +37,11 @@ class Challenge:
                 }
             )
         return challenge_info
+
+    def get_one_challenge_info(self, challenge_id):
+        """
+        获取单个练武题信息
+        """
+        url = f"https://iscc.isclab.org.cn/chals/{challenge_id}"
+        response = self.session.get(url)
+        return response.json()
