@@ -10,6 +10,13 @@ load_dotenv()
 def main():
     # 登录
     login = Login(os.getenv("name"), os.getenv("password"))
+    if not os.getenv("name") or not os.getenv("password"):
+        print("请先在.env文件中设置name和password")
+        # 创建.env文件
+        with open(".env", "w") as f:
+            f.write("name=\npassword=")
+        return
+
     login_result = login.login()
 
     if login_result.status_code != 200:
